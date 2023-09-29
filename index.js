@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors')
+const cookieParser = require('cookie-parser');
 const db = require('./models')
 
 const app = express();
@@ -7,6 +8,8 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+//for cookie middleware
+app.use(cookieParser());
 
 db.sequelize.sync({force: true}).then(() => {
     console.log('Databse Start')
